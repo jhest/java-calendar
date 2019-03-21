@@ -21,19 +21,27 @@ public class Calendar {
 //		System.out.println("15 16 17 18 19 20 21");
 //		System.out.println("22 23 24 25 26 27 28");
 
+		String PROMPT = "cal> ";
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
 
-		System.out.println("반복 횟수를 입력하세요.");
-		int repeat = scanner.nextInt();
+//		System.out.println("반복 횟수를 입력하세요.");
+//		int repeat = scanner.nextInt();
 
-		for (int i = 0; i < repeat; i++) {
-			System.out.println("달을 입력하세요.");
+		while (true) {
+			System.out.println("\n달을 입력하세요.");
+			System.out.print(PROMPT);
 			int month = scanner.nextInt();
-			System.out.printf("%d월은 %d일까지 있습니다.\n\n", month, cal.maxDaysOfMonth(month));
+			if (month == -1) {
+				break;
+			}
+			if (month > 12) {
+				continue;
+			}
+			System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.maxDaysOfMonth(month));
 		}
 
-		System.out.println("끝");
+		System.out.println("\n끝");
 		scanner.close();
 
 	}
