@@ -38,12 +38,31 @@ public class Calendar {
 			return MAX_DAYS[month - 1];
 	}
 
-	public void printSampleCalendar(int year, int month, int day) {
+	public int calDay(int year, int month) {
+		int preYear = year - 1;
+		int numOfDays = preYear * 365 + (preYear / 4 - preYear / 100 + preYear / 400);
+
+		for (int a = 0; a < month - 1; a++) {
+			numOfDays += MAX_DAYS[a];
+		}
+
+		if (month >= 3 && (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)) {
+			numOfDays++;
+		}
+
+		numOfDays += 1;
+
+		int dayOfWeek = numOfDays % 7;
+		return dayOfWeek;
+	}
+
+	public void printCalendar(int year, int month) {
 
 		System.out.printf("\n     [%4d년%3d월]\n", year, month);
 		System.out.println(" SU MO TU WE TH FR SA");
 		System.out.println("---------------------");
 
+		int day = calDay(year, month);
 		for (int i = 0; i < day; i++) {
 			System.out.print("   ");
 		}
